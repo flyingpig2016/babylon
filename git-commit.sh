@@ -39,7 +39,7 @@ else
     exit 1
 fi
 
-# 显示提交结果
+# 显示提交结果（不分页）
 echo -e "${GREEN}提交完成！${NC}"
 echo -e "${YELLOW}提交详情：${NC}"
-git show --stat HEAD 
+git --no-pager show --stat HEAD 
