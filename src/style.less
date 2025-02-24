@@ -1,0 +1,87 @@
+@import "./assets/styles/variables.less";
+
+.el-table {
+  .cell {
+    font-size: @gap-md;
+    white-space: nowrap;
+  }
+  .el-table.el-table--small .el-table__cell {
+    height: 40px;
+  }
+  th.el-table__cell {
+    background-color: @--background-color-base!important;
+  }
+}
+.el-alert__title {
+  font-size: @gap-md;
+}
+
+.el-tabs__item,
+.el-form-item__label,
+.el-button,
+input {
+  font-size: @gap-md !important;
+}
+
+.el-form-item__content {
+  .el-select__selected-item {
+    font-size: @gap-md !important;
+  }
+}
+.el-select {
+  .el-select__selected-item {
+    font: @gap-md !important;
+  }
+}
+
+.el-dialog__title {
+  font-size: @--dialog-title-font-size !important;
+}
+
+.el-tabs__item {
+  height: @--pagination-button-height !important;
+  border: 1px solid @--border-color-base !important;
+  margin-top: 1px !important;
+  margin-left: 1px !important;
+  margin-right: 8px !important;
+  background-color: @--background-color-base !important;
+  &.is-active {
+    background-color: @color-white !important;
+    border-bottom: @color-white !important;
+  }
+}
+
+.el-tabs--border-card {
+  border: none !important;
+  .el-tabs__header {
+    background-color: @color-white !important;
+  }
+}
+
+.el-pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  .el-pagination__total {
+    margin-right: 10px;
+  }
+}
+
+.el-card {
+  .el-card__header {
+    font-size: @gap-md !important;
+    padding: 12px 20px;
+  }
+}
+
+.el-switch {
+  .el-switch__label * {
+    font-size: @gap-md !important;
+  }
+}
+.el-link {
+  font-size: @gap-md !important;
+}
+.el-table__empty-text {
+  font-size: @gap-md !important;
+}

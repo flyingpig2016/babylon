@@ -1,0 +1,80 @@
+// z-index 级别 基本元素从1开始, 内部定位元素如inner drawer 10起步 导航侧边栏20起步  fixed顶层100起步 最顶层alert 1000起步
+@gap-xs: 4px; // 一般用于文字留白 和占比较弱的元素
+@gap-sm: 8px;
+@gap-md: 12px;
+@gap-lg: 16px;
+
+@font-sm: 12px;
+@font-md: 14px;
+@font-lg: 16px;
+@font-xl: 18px;
+
+@radius-app: 8px;
+@line-height-app: 22px;
+
+@height-md: 40px;
+@height-nav: 48px; // 导航栏高度
+@background-color-active: #f0f5ff; // 次要蓝色  数据card的hover态
+@color-body: #f5f9fc; // body背景色
+@color-white: #fff;
+// todo 其他场景建议使用el-tag el-alert相关className
+
+/* 以下为 element-ui 样式变量 */
+@--color-primary: #337dff;
+@--color-warning: #ff931d;
+@--color-success: #31cf9a;
+@--color-danger: #ff5f5f;
+@--color-info: #455a74;
+@--color-text-primary: #2d3e53; // 标题 菜单 正文深
+@--color-text-regular: #455a74; // 主要文字  正文中灰
+@--color-text-secondary: #7b93a7; // 次要，muted 正文浅灰
+@--color-text-placeholder: #bfbfbf;
+
+@--border-color-base: #ebebeb;
+@--background-color-base: #f9f9f9; // 元素底色块
+@--tooltip-fill: rgba(0, 0, 0, 0.7);
+@--tooltip-border-color: transparent; // ? 此版本element-ui bug
+
+@--select-input-font-size: @font-sm;
+@--select-option-hover-background: rgba(51, 125, 255, 0.1);
+@--select-group-color: @--color-text-placeholder;
+@--popup-modal-opacity: 0.7; // 遮罩层rgba(0,0,0,.7)
+@--button-small-padding-horizontal: @gap-md;
+@--button-mini-padding-horizontal: @gap-sm;
+
+@--input-font-color: @--color-text-primary;
+@--input-icon-color: @--color-text-regular;
+@--input-clear-hover-color: @--color-text-regular;
+@--select-input-color: @--color-text-regular; // 下拉框右侧caret
+@--border-color-hover: @--color-primary;
+
+// @--input-mini-height: 24px !default;
+
+@--pagination-button-color: #fff;
+@--pagination-button-width: 32px;
+@--pagination-button-height: 32px;
+@--pagination-button-disabled-color: @--background-color-base;
+@--pagination-button-disabled-background-color: #fff;
+
+@--font-size-base: @font-sm;
+@--font-size-small: @font-sm;
+@--font-weight-primary: 400;
+@--input-small-font-size: @font-sm;
+@--pagination-font-size: @font-sm;
+@--menu-item-font-size: @font-md;
+@--dialog-title-font-size: @font-md;
+@--dialog-font-line-height: 16px;
+@--dialog-content-font-size: @font-sm;
+@--dialog-padding-primary: @gap-md;
+
+@--checkbox-font-size: @font-sm;
+@--messagebox-font-size: @font-md;
+@--messagebox-content-font-size: @font-md;
+@--message-close-size: @font-lg;
+@--msgbox-padding-primary: @gap-md;
+@--message-padding: @gap-md;
+@--message-min-width: 180px;
+
+@--collapse-header-height: @height-md;
+@--collapse-content-font-size: @font-sm;
+@--collapse-content-font-color: @--color-text-regular;
