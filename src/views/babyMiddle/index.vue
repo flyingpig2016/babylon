@@ -1,14 +1,25 @@
 <template>
   <div class="w-full flex justify-center items-center">
-    <canvas ref="canvasRef" id="renderCanvas" width="1500" height="800"></canvas>
+    <canvas
+      ref="canvasRef"
+      id="renderCanvas"
+      width="1500"
+      height="800"
+    ></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted } from "vue";
-  // import { ElButton, ElUpload, ElCard, ElSelect, ElOption, ElInput, ElMessage } from "element-plus";
-  // import * as BABYLON from "@babylonjs/core/Legacy/legacy"; //全部引入
-  import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, MeshBuilder, PointLight } from "@babylonjs/core"; //只引入使用到的类
+  import {
+    Engine,
+    Scene,
+    ArcRotateCamera,
+    Vector3,
+    HemisphericLight,
+    MeshBuilder,
+    PointLight,
+  } from "@babylonjs/core"; //只引入使用到的类
   import "@babylonjs/materials/legacy/legacy"; //引入其他模块中的所有类，例如materials
 
   // 初始化一个场景，engine是Playground准备好的默认参数
@@ -21,7 +32,14 @@
     const engine = new Engine(canvas, true);
     const scene = new Scene(engine);
     // 添加一个相机，并且绑定鼠标事件
-    var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(0, 0, 5), scene);
+    var camera = new ArcRotateCamera(
+      "Camera",
+      Math.PI / 2,
+      Math.PI / 2,
+      2,
+      new Vector3(0, 0, 5),
+      scene
+    );
     camera.attachControl(canvas, true);
     //  添加一个环境光
     const light1 = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
