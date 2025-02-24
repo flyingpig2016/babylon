@@ -111,35 +111,7 @@ export default defineConfig(({ command, mode }) => {
 
     server: {
       host: true,
-      proxy: {
-        "/basic-api": {
-          target: "http://10.1.249.95:8023/",
-          // target: "http://10.11.31.76:8023/",
-          changeOrigin: true,
-          ws: true,
-          rewrite: (path) => path.replace(new RegExp(`^/basic-api`), ""),
-          // only https
-          // secure: false
-        },
-        "/upload": {
-          target: "http://localhost:3300/upload",
-          changeOrigin: true,
-          ws: true,
-          rewrite: (path) => path.replace(new RegExp(`^/upload`), ""),
-        },
-        // "/dugis/": {
-        //   // dugis api
-        //   target: "http://10.1.192.106:1025/dugis/", // 生产环境地址由nginx配置决定
-        //   changeOrigin: true,
-        //   rewrite: (path) => path.replace(new RegExp(`^/dugis`), ""),
-        // },
-        "/public/": {
-          // nginx静态文件优化,项目单独部署时指向同源位置
-          target: "http://10.1.192.106:2022/public/",
-          changeOrigin: true,
-          rewrite: (path) => path.replace(new RegExp(`^/public/`), ""),
-        },
-      },
+      proxy: {},
       open: true, // 项目启动后，自动打开
       warmup: {
         clientFiles: ["./index.html", "./src/{views,components}/*"], //预热配置，用于在服务器启动时预加载指定的文件
