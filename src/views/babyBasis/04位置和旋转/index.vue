@@ -10,6 +10,7 @@
     Engine,
     Scene,
     ArcRotateCamera,
+    UniversalCamera,
     Vector3,
     HemisphericLight,
     MeshBuilder,
@@ -31,32 +32,44 @@
     const engine = new Engine(canvas, true);
     const scene = new Scene(engine);
     // 添加一个相机，并且绑定鼠标事件
-    // var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(0, 0, 5), scene);
-    var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(0, 0, 0), scene);
+    // var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(2, 2, 2), scene);
+    const camera = new UniversalCamera("Camera", new Vector3(0, 0, 0), scene);
     camera.attachControl(canvas, true);
     //  添加一个环境光
     const light1 = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
     // 添加一个点光源
     const light2 = new PointLight("light2", new Vector3(0, 1, -1), scene);
-    // 添加一个球体到场景中
-    // const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 0.5, slice: 0.5 }, scene);
-    var sphere = MeshBuilder.CreateSphere("sphere", { diameterX: 1, diameterY: 0.75, diameterZ: 0.25 }, scene);
-    const axes = new AxesViewer(scene, 1);
-    // const shape = MeshBuilder.CreateBox("box", {
-    //   size: 1,
-    //   height: 1,
-    //   width: 1,
-    //   depth: 0.5,
-    //   faceColors: [new Color4(1, 0, 0), new Color4(0, 1, 0), new Color4(0, 0, 1), new Color4(1, 1, 0)],
-    //   sideOrientation: Mesh.DOUBLESIDE,
-    // });
 
     // 创建默认平面
     const plane = MeshBuilder.CreatePlane(
       "plane",
-      { width: 2, height: 2, frontUVs: new Vector4(1, 1, 0, 1), sideOrientation: Mesh.DOUBLESIDE },
+      { width: 5, height: 2, frontUVs: new Vector4(1, 1, 0, 1), sideOrientation: Mesh.DOUBLESIDE },
       scene
     );
+    // plane.position.x = -1;
+    // plane.position.y = 1;
+    // plane.position.z = 1;
+    // plane.rotation.x = Math.PI / 4;
+    // plane.rotation = new Vector3(Math.PI / 6, 0, 0);
+    //可以先初始化一个数据
+    var myPoints: Vector3[] = [];
+    //然后初始化三个点，push到数组里
+    var point1 = new Vector3(0, 0, 0);
+    myPoints.push(point1);
+    var point2 = new Vector3(0, 1, 1);
+    myPoints.push(point2);
+    var point3 = new Vector3(0, 1, 0);
+    myPoints.push(point3);
+
+    const myNewArray = [new Vector3(0, 2, 0), new Vector3(1, 1, 2), new Vector3(0, 0, 0)];
+
+    // 创建线条
+    var lines = MeshBuilder.CreateLines("lines", { points: myNewArray }, scene);
+
+    //然后把上面的线条作为一个instance传入到新创建的线条中，完成更新，新线条可以不用传入Scene实例，也就是第三个参数不用传。注意myArray和myNewArray长度必须一致。
+    lines = MeshBuilder.CreateLines("lines", { points: myNewArray, instance: lines });
+
+    const axes = new AxesViewer(scene, 1);
 
     return scene;
   };

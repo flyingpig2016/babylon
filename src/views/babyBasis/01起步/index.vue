@@ -1,25 +1,12 @@
 <template>
   <div class="w-full flex justify-center items-center">
-    <canvas
-      ref="canvasRef"
-      id="renderCanvas"
-      width="1500"
-      height="800"
-    ></canvas>
+    <canvas ref="canvasRef" id="renderCanvas" width="1500" height="800"></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted } from "vue";
-  import {
-    Engine,
-    Scene,
-    ArcRotateCamera,
-    Vector3,
-    HemisphericLight,
-    MeshBuilder,
-    PointLight,
-  } from "@babylonjs/core"; //只引入使用到的类
+  import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, MeshBuilder, PointLight } from "@babylonjs/core"; //只引入使用到的类
   import "@babylonjs/materials/legacy/legacy"; //引入其他模块中的所有类，例如materials
 
   // 初始化一个场景，engine是Playground准备好的默认参数
@@ -37,7 +24,8 @@
       Math.PI / 2,
       Math.PI / 2,
       2,
-      new Vector3(0, 0, 5),
+      // new Vector3(0, 0, 5),
+      new Vector3(0, 0, 0),
       scene
     );
     camera.attachControl(canvas, true);
@@ -46,7 +34,7 @@
     // 添加一个点光源
     const light2 = new PointLight("light2", new Vector3(0, 1, -1), scene);
     // 添加一个球体到场景中
-    const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 2 }, scene);
+    const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 0.5 }, scene);
 
     return scene;
   };

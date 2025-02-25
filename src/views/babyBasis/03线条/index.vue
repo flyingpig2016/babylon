@@ -31,32 +31,42 @@
     const engine = new Engine(canvas, true);
     const scene = new Scene(engine);
     // 添加一个相机，并且绑定鼠标事件
-    // var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(0, 0, 5), scene);
     var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(0, 0, 0), scene);
+    // camera.setPosition(new Vector3(1, -1, -1));
+    camera.setPosition(new Vector3(5, 5, -5));
     camera.attachControl(canvas, true);
-    //  添加一个环境光
+    // 初始化一个半球光来照亮场景
     const light1 = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
-    // 添加一个点光源
-    const light2 = new PointLight("light2", new Vector3(0, 1, -1), scene);
-    // 添加一个球体到场景中
-    // const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 0.5, slice: 0.5 }, scene);
-    var sphere = MeshBuilder.CreateSphere("sphere", { diameterX: 1, diameterY: 0.75, diameterZ: 0.25 }, scene);
+    // 创建一个坐标轴查看器以帮助可视化坐标轴
     const axes = new AxesViewer(scene, 1);
-    // const shape = MeshBuilder.CreateBox("box", {
-    //   size: 1,
-    //   height: 1,
-    //   width: 1,
-    //   depth: 0.5,
-    //   faceColors: [new Color4(1, 0, 0), new Color4(0, 1, 0), new Color4(0, 0, 1), new Color4(1, 1, 0)],
-    //   sideOrientation: Mesh.DOUBLESIDE,
-    // });
+    // 声明一个数组来存储线条的点，显式地将其类型设为 Vector3
+    var myPoints: Vector3[] = [];
 
-    // 创建默认平面
-    const plane = MeshBuilder.CreatePlane(
-      "plane",
-      { width: 2, height: 2, frontUVs: new Vector4(1, 1, 0, 1), sideOrientation: Mesh.DOUBLESIDE },
-      scene
-    );
+    // 定义每个点的角度和高度的变化量
+    var deltaTheta = 0.1;
+    var deltaY = 0.005;
+
+    // 初始化半径、角度和高度的变量
+    var radius = 1;
+    var theta = 0;
+    var Y = 0;
+
+    // 循环生成400个点，形成螺旋形状
+    for (var i = 0; i < 400; i++) {
+      // 计算x, y, z坐标并将点添加到数组中
+      myPoints.push(new Vector3(radius * Math.cos(theta), Y, radius * Math.sin(theta)));
+      // 增加下一个点的角度和高度
+      theta += deltaTheta;
+      Y += deltaY;
+    }
+
+    // 将生成的点输出到控制台以便调试
+    console.log(myPoints);
+
+    // 从点数组创建一个线条网格并将其添加到场景中
+    var lines = MeshBuilder.CreateLines("lines", { points: myPoints }, scene);
+    const lines2 = MeshBuilder.CreateDashedLines("lines2", { points: myPoints, dashNb: 400 }, scene);
+    lines2.position.x = 3;
 
     return scene;
   };
