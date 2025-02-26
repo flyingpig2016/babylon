@@ -45,8 +45,11 @@
     const box = MeshBuilder.CreateBox("box", { size: 2 }, scene);
     // box.material = new StandardMaterial("box", scene);
     var myMaterial = new StandardMaterial("myMaterial", scene); //创建一个材质
-    myMaterial.diffuseColor = new Color3(1, 0, 1);
-    myMaterial.specularColor = new Color3(1, 1, 1); //镜面反射颜色
+    myMaterial.diffuseColor = new Color3(1, 0, 1); //漫反射颜色
+    myMaterial.specularColor = new Color3(0.5, 0.6, 0.87); //镜面颜色
+    // myMaterial.emissiveColor = new Color3(1, 0, 1); //自发光颜色
+    myMaterial.ambientColor = new Color3(0.23, 0.98, 0.53); //环境光颜色
+    box.material = myMaterial;
 
     const axes = new AxesViewer(scene, 1);
 

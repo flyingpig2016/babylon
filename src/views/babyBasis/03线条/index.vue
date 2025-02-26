@@ -1,11 +1,15 @@
 <template>
+  <!-- 创建一个全屏的div来容纳canvas -->
   <div class="w-full flex justify-center items-center">
+    <!-- 定义一个canvas元素用于渲染3D场景 -->
     <canvas ref="canvasRef" id="renderCanvas" width="1500" height="800"></canvas>
   </div>
 </template>
 
 <script setup lang="ts">
+  // 从Vue中导入ref和onMounted函数
   import { ref, onMounted } from "vue";
+  // 从Babylon.js中导入所需的类
   import {
     Engine,
     Scene,
@@ -18,22 +22,25 @@
     Mesh,
     Vector4,
     AxesViewer,
-  } from "@babylonjs/core"; //只引入使用到的类
-  import "@babylonjs/materials/legacy/legacy"; //引入其他模块中的所有类，例如materials
+  } from "@babylonjs/core"; // 只引入使用到的类
+  import "@babylonjs/materials/legacy/legacy"; // 引入其他模块中的所有类，例如materials
 
   // 初始化一个场景，engine是Playground准备好的默认参数
   const canvasRef = ref<HTMLCanvasElement>();
 
-  // 提添加家创建场景函数
+  // 创建场景的函数
   const createScene = () => {
+    // 获取canvas元素
     const canvas = canvasRef.value as HTMLCanvasElement;
-    // 初始化 BABYLON 3D engine
+    // 初始化 BABYLON 3D 引擎
     const engine = new Engine(canvas, true);
+    // 创建一个新的场景
     const scene = new Scene(engine);
-    // 添加一个相机，并且绑定鼠标事件
+    // 添加一个弧旋转相机，并绑定鼠标事件
     var camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new Vector3(0, 0, 0), scene);
-    // camera.setPosition(new Vector3(1, -1, -1));
+    // 设置相机位置
     camera.setPosition(new Vector3(5, 5, -5));
+    // 使相机可以通过用户输入进行控制
     camera.attachControl(canvas, true);
     // 初始化一个半球光来照亮场景
     const light1 = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
@@ -65,14 +72,22 @@
 
     // 从点数组创建一个线条网格并将其添加到场景中
     var lines = MeshBuilder.CreateLines("lines", { points: myPoints }, scene);
+    // 创建一个虚线网格并将其添加到场景中
     const lines2 = MeshBuilder.CreateDashedLines("lines2", { points: myPoints, dashNb: 400 }, scene);
+    // 设置虚线网格的位置
     lines2.position.x = 3;
 
+    // 返回创建的场景
     return scene;
   };
+
+  // 初始化函数
   const init = () => {
+    // 获取canvas元素
     const canvas = canvasRef.value as HTMLCanvasElement;
+    // 初始化 BABYLON 3D 引擎
     const engine = new Engine(canvas, true);
+    // 创建场景
     const scene = createScene();
 
     // 最后一步调用engine的runRenderLoop方案，执行scene.render()，让我们的3d场景渲染起来
@@ -85,6 +100,7 @@
     });
   };
 
+  // 当组件挂载时，调用初始化函数
   onMounted(() => {
     init();
   });
